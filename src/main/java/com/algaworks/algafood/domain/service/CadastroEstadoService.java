@@ -11,7 +11,7 @@ public class CadastroEstadoService {
 	
 	@Autowired
 	private EstadoRepository estadoRepository;
-	
+		
 	public Estado salvar(Estado estado) {
 		return estadoRepository.salvar(estado);
 	}

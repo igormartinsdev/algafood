@@ -53,7 +53,7 @@ public class EstadoController {
 			
 			estadoAtual = cadastroEstado.salvar(estadoAtual);
 			
-			return ResponseEntity.status(HttpStatus.CREATED).body(estadoAtual);
+			return ResponseEntity.ok(estadoAtual);
 		}
 		
 		return ResponseEntity.notFound().build();
