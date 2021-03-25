@@ -1,6 +1,7 @@
 package com.algaworks.algafood.domain.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.algaworks.algafood.domain.exception.EntidadeNaoEncontradaException;
@@ -23,12 +24,20 @@ public class CadastroCidadeService {
 		Estado estado = estadoRepository.buscar(estadoId);
 		
 		if(estado == null) {
-			throw new EntidadeNaoEncontradaException(String.format("Não existe estado cadastro com esse código %d", estadoId));
+			throw new EntidadeNaoEncontradaException(String.format("Não existe estado cadastrado com esse código %d", estadoId));
 		}
 		
 		cidade.setEstado(estado);
 		
 		return cidadeRepository.salvar(cidade);
+	}
+	
+	public void excluir(Long cidadeId) {
+		try {
+			cidadeRepository.remover(cidadeId);
+		} catch (EmptyResultDataAccessException e) {
+			throw new EntidadeNaoEncontradaException(String.format("Não existe cidade cadastrada com o código %d", cidadeId));
+		}
 	}
 	
 }
