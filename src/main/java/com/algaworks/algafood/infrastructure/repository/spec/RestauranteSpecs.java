@@ -16,7 +16,7 @@ public class RestauranteSpecs {
 	
 	public static Specification<Restaurante> comNomeSemelhante(String nome){
 		return (root, query, builder) ->
-			builder.equal(root.get("nome"), "%" + nome + "%");
+			builder.like(root.get("nome"), "%" + nome + "%");
 	}
 
 }
